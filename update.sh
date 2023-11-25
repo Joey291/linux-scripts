@@ -1,6 +1,8 @@
 #!/bin/bash
 
 #Aktualisierung Downloaden
+apk update
+apk add git
 git clone https://github.com/Joey291/linux-scripts.git
 echo "Beende das zu aktualisierende Skript..."
 
