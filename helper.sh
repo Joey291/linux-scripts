@@ -54,7 +54,7 @@ while true; do
     echo "83. CPU Aktueller Takt"
     echo "85. Network Interfaces"
     echo "86. Listening Ports"
-    echo "87. sysctl.conf (Disabel IPV6)"
+    echo "87. sysctl.conf (Disable IPV6)"
     echo " "
     echo "-System-"
     echo "90. Neustart"
