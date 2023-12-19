@@ -91,7 +91,7 @@ while true; do
       3)
          echo "Führe 'htop' aus..."
          # Füge hier den Befehl für 'reboot' ein
-         htop
+         btop
          ;;
       4)
          clear
