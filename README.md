@@ -6,4 +6,6 @@ the updater.sh and helper.sh goes into folder /home/
 
 dont forget to make the files executeable for the first run -> "chmod +x update.sh"
 
+first start: install all dependencies with "80"
+
 
