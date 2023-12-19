@@ -298,6 +298,7 @@ while true; do
          ./y-cruncher
          cd /home
          rm -r y-cruncher
+         exit 0
          ;;
      51)
          while true; do
