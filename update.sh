@@ -8,7 +8,8 @@ echo "Beende das zu aktualisierende Skript..."
 
 pkill -f "$(basename "$(pwd)/helper.sh")"
 echo "Führe das Update-Skript aus..."
-rm helper.sh
+
+rm -f helper.sh
 mv linux-scripts/helper.sh .
 chmod +x helper.sh
 rm -r linux-scripts
