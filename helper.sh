@@ -167,9 +167,10 @@ while true; do
          ;;
      21)
          clear
+         mkdir temp
+         cd temp
          git clone https://github.com/CISOfy/lynis
          cd lynis && ./lynis audit system
-         cd .. && rm -r lynis
          exit 0
          ;;
      22) #Turbo Off
@@ -454,10 +455,10 @@ while true; do
          poweroff
          exit 0
          ;;
-     92) clear tmp
-        clear
-        rm -r temp
-        ;;
+     92) #clear tmp
+         clear
+         rm -r temp
+         ;;
      99)
          echo "Beenden."
          clear
