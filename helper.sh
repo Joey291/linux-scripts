@@ -289,7 +289,7 @@ while true; do
          echo "Downloading Y-Cruncher"
          mkdir y-cruncher
          cd y-cruncher
-         wget http://www.numberworld.org/y-cruncher/y-cruncher%20v0.8.2.9524-static.tar.xz
+         wget http://www.numberworld.org/y-cruncher/y-cruncher%20v0.8.3.9532-static.tar.xz
          echo "Installing Y-Cruncher"
          tar -xf y-cruncher%20v0.8.2.9524-static.tar.xz
          cd y-cruncher\ v0.8.2.9524-static
