@@ -59,6 +59,7 @@ while true; do
     echo "-System-"
     echo "90. Neustart"
     echo "91. Shutdown"
+    echo "92. Clear Programm Temp"
     echo " "
     echo "99. Exit Programm"
     echo " "
@@ -287,8 +288,8 @@ while true; do
      30) #y-cruncher
          clear
          ycruncher=v0.8.3.9532-static
-         mkdir helpertemp
-         cd helpertemp
+         mkdir temp
+         cd temp
          mkdir y-cruncher
          cd y-cruncher
          echo "Downloading Y-Cruncher"
@@ -453,6 +454,10 @@ while true; do
          poweroff
          exit 0
          ;;
+     92) clear tmp
+        clear
+        rm -r temp
+        ;;
      99)
          echo "Beenden."
          clear
