@@ -1,4 +1,12 @@
 #!/bin/bash
+if [ ! -f "temp/installed" ]; then
+ echo " "
+ echo "Installing Dependencies..."
+ echo " "
+ apk update && apk add lm-sensors lm-sensors-detect bash htop git nano dmidecode util-linux hdparm btop
+ touch temp/installed
+fi
+
 while true; do
     # Get the Kernel version and Hostname
     kernel_version=$(uname -r)
@@ -48,7 +56,6 @@ while true; do
     echo "54. Portainer Update"
     echo " "
     echo "-Sonstiges-"
-    echo "80. Alle Abhänigkeiten für dieses Script installieren"
     echo "81. Hardware Info (dmidecode)"
     echo "82. CPU Info"
     echo "83. CPU Aktueller Takt"
@@ -372,13 +379,6 @@ while true; do
          docker stop portainer
          docker rm portainer
          docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -v /etc/localtime:/etc/localtime:ro -v portainer_data:/data portainer/portainer-ce
-         ;;
-     80) # Alle Abhänigkeiten installieren
-         clear
-         apk add lm-sensors lm-sensors-detect bash htop git nano dmidecode util-linux hdparm btop
-         echo " "
-         echo "Drücke beliebige Taste um fortzufahren..."
-         read -n 1 -s
          ;;
      81)
          clear
