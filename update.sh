@@ -16,5 +16,8 @@ echo "Führe das Update-Skript aus..."
 
 rm -f helper.sh
 mv linux-scripts/helper.sh .
+rm -f update.sh
+mv linux-scripts/update.sh .
 chmod +x helper.sh
+chmod +x update.sh
 rm -r linux-scripts
