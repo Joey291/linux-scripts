@@ -4,6 +4,7 @@ if [ ! -f "temp/installed" ]; then
  echo "Installing Dependencies..."
  echo " "
  apk update && apk add lm-sensors lm-sensors-detect bash htop git nano dmidecode util-linux hdparm btop
+ mkdir temp
  touch temp/installed
 fi
 
