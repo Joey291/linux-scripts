@@ -304,6 +304,7 @@ while true; do
          else
           # If the folder already exists, print a message
           echo "Y-Cruncher is already installed. Skipping download and installation."
+          cd y-cruncher
          fi
   
           cd "y-cruncher $ycruncher"
