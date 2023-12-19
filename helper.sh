@@ -295,7 +295,7 @@ while true; do
          wget http://www.numberworld.org/y-cruncher/y-cruncher%20"$ycruncher"
          echo "Installing Y-Cruncher"
          tar -xf y-cruncher%20"$ycruncher"
-         cd y-cruncher\ "$ycruncher"
+         cd y-cruncher\ $ycruncher
          chmod a+x y-cruncher
          clear
          ./y-cruncher
