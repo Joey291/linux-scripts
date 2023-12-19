@@ -291,16 +291,26 @@ while true; do
          ycruncher=v0.8.3.9532-static
          mkdir temp
          cd temp
-         mkdir y-cruncher
-         cd y-cruncher
-         echo "Downloading Y-Cruncher"
-         wget http://www.numberworld.org/y-cruncher/y-cruncher%20"$ycruncher".tar.xz
-         echo "Installing Y-Cruncher"
-         tar -xf y-cruncher%20"$ycruncher".tar.xz
-         cd y-cruncher\ "$ycruncher"
-         chmod a+x y-cruncher
-         clear
-         ./y-cruncher
+         if [ ! -d "y-cruncher" ]; then
+          mkdir y-cruncher
+          cd y-cruncher
+
+          echo "Downloading Y-Cruncher"
+          wget http://www.numberworld.org/y-cruncher/y-cruncher%20"$ycruncher".tar.xz
+
+          echo "Installing Y-Cruncher"
+          tar -xf y-cruncher%20"$ycruncher".tar.xz
+
+         else
+          # If the folder already exists, print a message
+          echo "Y-Cruncher is already installed. Skipping download and installation."
+         fi
+  
+          cd "y-cruncher $ycruncher"
+
+          chmod a+x y-cruncher
+          clear
+          ./y-cruncher
          exit 0
          ;;
      51)
