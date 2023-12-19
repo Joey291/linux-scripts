@@ -67,7 +67,7 @@ while true; do
     echo "-System-"
     echo "90. Neustart"
     echo "91. Shutdown"
-    echo "92. Clear Programm Temp"
+    echo "92. Clear Programm Temp Folder"
     echo " "
     echo "99. Exit Programm"
     echo " "
