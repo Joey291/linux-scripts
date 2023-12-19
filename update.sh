@@ -1,8 +1,13 @@
 #!/bin/bash
 
 #Aktualisierung Downloaden
-apk update
-apk add git
+if [ ! -f "temp/installed" ]; then
+ apk update
+ apk add git
+fi
+
+rm -r temp
+
 git clone https://github.com/Joey291/linux-scripts.git
 echo "Beende das zu aktualisierende Skript..."
 
