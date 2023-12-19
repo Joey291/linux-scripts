@@ -286,18 +286,19 @@ while true; do
          ;;
      30) #y-cruncher
          clear
-         echo "Downloading Y-Cruncher"
+         ycruncher=v0.8.3.9532-static.tar.xz
+         mkdir helpertemp
+         cd helpertemp
          mkdir y-cruncher
          cd y-cruncher
-         wget http://www.numberworld.org/y-cruncher/y-cruncher%20v0.8.3.9532-static.tar.xz
+         echo "Downloading Y-Cruncher"
+         wget http://www.numberworld.org/y-cruncher/y-cruncher%20"$ycruncher"
          echo "Installing Y-Cruncher"
-         tar -xf y-cruncher%20v0.8.3.9532-static.tar.xz
-         cd y-cruncher\ v0.8.3.9532-static
+         tar -xf y-cruncher%20"$ycruncher"
+         cd y-cruncher\ "$ycruncher"
          chmod a+x y-cruncher
          clear
          ./y-cruncher
-         cd /home
-         rm -r y-cruncher
          exit 0
          ;;
      51)
