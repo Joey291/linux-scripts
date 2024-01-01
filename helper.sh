@@ -55,6 +55,7 @@ while true; do
     echo "52. Docker Connect To Container Shell"
     echo "53. Docker Verzeichnis"
     echo "54. Portainer Update"
+    echo "55. Portainer Update Cgroup"
     echo " "
     echo "-Sonstiges-"
     echo "81. Hardware Info (dmidecode)"
@@ -380,6 +381,14 @@ while true; do
          docker stop portainer
          docker rm portainer
          docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -v /etc/localtime:/etc/localtime:ro -v portainer_data:/data portainer/portainer-ce
+         ;;
+     55)
+         #Portainer Update
+         clear
+         docker pull portainer/portainer-ce
+         docker stop portainer
+         docker rm portainer
+         docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --cgroupns host --restart=unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -v /etc/localtime:/etc/localtime:ro -v portainer_data:/data portainer/portainer-ce
          ;;
      81)
          clear
