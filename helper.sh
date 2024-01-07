@@ -482,6 +482,13 @@ while true; do
          echo "Drücke beliebige Taste um fortzufahren..."
          read -n 1 -s
          ;;
+     86)
+         clear
+         netstat -l
+         echo " "
+         echo "Drücke beliebige Taste um fortzufahren..."
+         read -n 1 -s
+         ;;
      87)
          clear
          # Check if the lines exist in sysctl.conf
@@ -499,12 +506,6 @@ while true; do
          fi
          # Apply changes
          sysctl -p
-         ;;
-     86)
-         clear
-         netstat -l
-         echo " "
-         echo "Drücke beliebige Taste um fortzufahren..."
          read -n 1 -s
          ;;
      90)
