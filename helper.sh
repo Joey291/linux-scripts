@@ -37,8 +37,7 @@ while true; do
     echo "10. Installierte Pakete"
     echo "11. Temperatur"
     echo "12. Maintenance"
-    echo "13. SWAP Settings"
-    echo "14. SMART Tool"
+    echo "13. SMART Tool"
     echo " "
     echo "-Services-"
     echo "20. Samba Neustart"
@@ -67,6 +66,7 @@ while true; do
     echo "85. Network Interfaces"
     echo "86. Listening Ports"
     echo "87. sysctl.conf (Disable IPV6)"
+    echo "88. sysctl.conf (SWAP Settings)"
     echo " "
     echo "-System-"
     echo "90. Neustart"
@@ -194,32 +194,7 @@ while true; do
          swapon -a
          sleep 3
          ;;
-     13) #SWAP
-         clear
-         echo "Current Swap Setting:"
-         cat /proc/sys/vm/swappiness
-         echo " "
-         echo " "
-         echo "auf welchen wert willst du den SWAP ändern? (in %)"
-         read SWAPPINESS_VALUE
-         # Check if the line exists in sysctl.conf
-         if grep -q '^vm.swappiness=' /etc/sysctl.conf; then
-           # Line exists, replace the value
-           sed -i "s/^vm.swappiness=.*/vm.swappiness=$SWAPPINESS_VALUE/" /etc/sysctl.conf
-           echo "vm.swappiness updated to $SWAPPINESS_VALUE"
-         else
-           # Line doesn't exist, add it
-           echo "vm.swappiness=$SWAPPINESS_VALUE" | tee -a /etc/sysctl.conf
-           echo "vm.swappiness set to $SWAPPINESS_VALUE"
-         fi 
-         sysctl -p
-         echo " "
-         echo " Erfolgreich geändert! "
-         echo " "
-         echo " kehre zum hauptmenue zurück ... "
-         sleep 3
-         ;;
-     14)
+     13)
          clear
          echo "from which device do you want to read smart values?"
          echo " "
@@ -520,6 +495,31 @@ while true; do
          echo "Press any key to Continue"
          read -n 1 -s
          sysctl -p
+         ;;
+     88) #SWAP
+         clear
+         echo "Current Swap Setting:"
+         cat /proc/sys/vm/swappiness
+         echo " "
+         echo " "
+         echo "auf welchen wert willst du den SWAP ändern? (in %)"
+         read SWAPPINESS_VALUE
+         # Check if the line exists in sysctl.conf
+         if grep -q '^vm.swappiness=' /etc/sysctl.conf; then
+           # Line exists, replace the value
+           sed -i "s/^vm.swappiness=.*/vm.swappiness=$SWAPPINESS_VALUE/" /etc/sysctl.conf
+           echo "vm.swappiness updated to $SWAPPINESS_VALUE"
+         else
+           # Line doesn't exist, add it
+           echo "vm.swappiness=$SWAPPINESS_VALUE" | tee -a /etc/sysctl.conf
+           echo "vm.swappiness set to $SWAPPINESS_VALUE"
+         fi 
+         sysctl -p
+         echo " "
+         echo " Erfolgreich geändert! "
+         echo " "
+         echo " kehre zum hauptmenue zurück ... "
+         sleep 3
          ;;
      90)
          clear
