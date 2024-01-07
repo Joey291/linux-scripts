@@ -505,8 +505,8 @@ while true; do
             echo "IPv6 has been deactivated"
          fi
          # Apply changes
-         sysctl -p
          read -n 1 -s
+         sysctl -p
          ;;
      90)
          clear
