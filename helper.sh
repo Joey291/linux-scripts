@@ -38,6 +38,7 @@ while true; do
     echo "11. Temperatur"
     echo "12. Maintenance"
     echo "13. SWAP Settings"
+    echo "14. SMART Tool"
     echo " "
     echo "-Services-"
     echo "20. Samba Neustart"
@@ -217,6 +218,16 @@ while true; do
          echo " "
          echo " kehre zum hauptmenue zurück ... "
          sleep 3
+         ;;
+     13)
+         clear
+         echo "from which device do you want to read smart values?"
+         echo " "
+         lsblk -d
+         read smart
+         clear
+         smartctl -a -d ata /dev/$smart
+         read -n 1 -s
          ;;
      20)
          clear
