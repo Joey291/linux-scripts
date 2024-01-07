@@ -3,7 +3,7 @@
 CONFIG_FILE="backup.config"
 backup_location="/var/lib/docker/volumes/backup"
 MAX_DAYS=60  # Maximum number of days to keep archives
-COMPRESS_OPTION="y"  # Setze auf "y" für gzip-Kompression, leer für keine Kompression. Backup dauert deutlich länger !
+COMPRESS_OPTION=""  # Setze auf "y" für gzip-Kompression, leer für keine Kompression. Backup dauert deutlich länger !
 
 is_container_running() {
     local container_name=$1
