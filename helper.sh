@@ -177,7 +177,16 @@ while true; do
          echo "TRIM SSD"
          fstrim / -v
          echo "Empty ram buffers and cache"
-         free && sync && echo 3 > /proc/sys/vm/drop_caches && free
+         echo " "
+         echo " "
+         echo "Before Clear"
+         free 
+         sync 
+         echo 3 > /proc/sys/vm/drop_caches
+         echo " "
+         echo " "
+         echo "After clear"
+         free
          echo "Empty SWAP"
          swapoff -a
          sleep 8
