@@ -37,6 +37,7 @@ while true; do
     echo "10. Installierte Pakete"
     echo "11. Temperatur"
     echo "12. Maintenance"
+    echo "13. SWAP Settings"
     echo " "
     echo "-Services-"
     echo "20. Samba Neustart"
@@ -172,6 +173,7 @@ while true; do
          watch -n 1 sensors
          ;;
      12) #maintenance
+         clear
          echo "TRIM SSD"
          fstrim / -v
          echo "Empty ram buffers and cache"
@@ -181,6 +183,21 @@ while true; do
          sleep 10
          swapon -a
          sleep 10
+         ;;
+     13) #SWAP
+         clear
+         echo "Current Swap Setting:"
+         cat /proc/sys/vm/swappiness
+         echo " "
+         echo " "
+         echo "auf welchen wert willst du den SWAP ändern? (in %)"
+         read swap
+         echo $swap > /proc/sys/vm/swappiness
+         echo " "
+         echo " Erfolgreich geändert! "
+         echo " "
+         echo " kehre zum hauptmenue zurück ... "
+         sleep 5
          ;;
      20)
          clear
