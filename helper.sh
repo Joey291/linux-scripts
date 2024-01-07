@@ -219,7 +219,7 @@ while true; do
          echo " kehre zum hauptmenue zurück ... "
          sleep 3
          ;;
-     13)
+     14)
          clear
          echo "from which device do you want to read smart values?"
          echo " "
