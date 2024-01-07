@@ -3,14 +3,13 @@
 CONFIG_FILE="backup.config"
 backup_location="/var/lib/docker/volumes/backup"
 MAX_DAYS=60  # Maximum number of days to keep archives
+COMPRESS_OPTION="y"  # Setze auf "y" für gzip-Kompression, leer für keine Kompression
 
-# Function to check if a container is running
 is_container_running() {
     local container_name=$1
     docker inspect -f '{{.State.Running}}' "$container_name" 2>/dev/null
 }
 
-# Function to stop, backup, and start a container
 stop_backup_start() {
     local container_name=$1
     local config_folder=$2
@@ -24,7 +23,12 @@ stop_backup_start() {
         echo "Container $container_name is already stopped."
     fi
 
-    echo "Creating archive for $container_name..." && tar -cf "$backup_file" $config_folder
+    echo "Creating archive for $container_name..."
+    if [ "$COMPRESS_OPTION" == "y" ]; then
+         tar -czf "$backup_file" $config_folder
+    else
+         tar -cf "$backup_file" $config_folder
+    fi
 
     if [ "$stopped" = true ]; then
         echo "Starting container $container_name..." && docker start "$container_name"
@@ -32,13 +36,11 @@ stop_backup_start() {
     echo "--------moving to next container"
 }
 
-# Function to clean up old archives
 cleanup_old_archives() {
     find "$backup_location" -name "*.tar" -type f -mtime +"$MAX_DAYS" -exec rm {} \;
 }
 
 # Main script
-# Check if the backup location exists
 if [ ! -d "$backup_location" ]; then
     echo Directory does not exist, create it
     mkdir "$backup_location"
