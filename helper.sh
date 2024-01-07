@@ -170,6 +170,7 @@ while true; do
      11)
          echo "Temperatur Sensoren werden abgerufen"
          watch -n 1 sensors
+         ;;
      12) #maintenance
          echo "TRIM SSD"
          fstrim / -v
