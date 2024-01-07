@@ -180,9 +180,9 @@ while true; do
          free && sync && echo 3 > /proc/sys/vm/drop_caches && free
          echo "Empty SWAP"
          swapoff -a
-         sleep 10
+         sleep 8
          swapon -a
-         sleep 10
+         sleep 3
          ;;
      13) #SWAP
          clear
@@ -197,7 +197,7 @@ while true; do
          echo " Erfolgreich geändert! "
          echo " "
          echo " kehre zum hauptmenue zurück ... "
-         sleep 5
+         sleep 3
          ;;
      20)
          clear
