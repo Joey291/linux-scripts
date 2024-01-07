@@ -200,8 +200,18 @@ while true; do
          echo " "
          echo " "
          echo "auf welchen wert willst du den SWAP ändern? (in %)"
-         read swap
-         echo $swap > /proc/sys/vm/swappiness
+         read SWAPPINESS_VALUE
+         # Check if the line exists in sysctl.conf
+         if grep -q '^vm.swappiness=' /etc/sysctl.conf; then
+           # Line exists, replace the value
+           sed -i "s/^vm.swappiness=.*/vm.swappiness=$SWAPPINESS_VALUE/" /etc/sysctl.conf
+           echo "vm.swappiness updated to $SWAPPINESS_VALUE"
+         else
+           # Line doesn't exist, add it
+           echo "vm.swappiness=$SWAPPINESS_VALUE" | tee -a /etc/sysctl.conf
+           echo "vm.swappiness set to $SWAPPINESS_VALUE"
+         fi 
+         sysctl -p
          echo " "
          echo " Erfolgreich geändert! "
          echo " "
