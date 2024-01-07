@@ -492,13 +492,13 @@ while true; do
             echo "IPv6 is already deactivated"
          else
             # Lines don't exist, add them
-            echo "net.ipv6.conf.all.disable_ipv6=1" | sudo tee -a /etc/sysctl.conf
-            echo "net.ipv6.conf.default.disable_ipv6=1" | sudo tee -a /etc/sysctl.conf
-            echo "net.ipv6.conf.lo.disable_ipv6=1" | sudo tee -a /etc/sysctl.conf
+            echo "net.ipv6.conf.all.disable_ipv6=1" | tee -a /etc/sysctl.conf
+            echo "net.ipv6.conf.default.disable_ipv6=1" | tee -a /etc/sysctl.conf
+            echo "net.ipv6.conf.lo.disable_ipv6=1" | tee -a /etc/sysctl.conf
             echo "IPv6 has been deactivated"
          fi
          # Apply changes
-         sudo sysctl -p
+         sysctl -p
          ;;
      86)
          clear
