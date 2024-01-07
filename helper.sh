@@ -36,6 +36,7 @@ while true; do
     echo "9. Find File"
     echo "10. Installierte Pakete"
     echo "11. Temperatur"
+    echo "12. Maintenance"
     echo " "
     echo "-Services-"
     echo "20. Samba Neustart"
@@ -168,7 +169,17 @@ while true; do
          ;;
      11)
          echo "Temperatur Sensoren werden abgerufen"
-         watch -n 1 sensors 
+         watch -n 1 sensors
+     12) #maintenance
+         echo "TRIM SSD"
+         fstrim / -v
+         echo "Empty ram buffers and cache"
+         free && sync && echo 3 > /proc/sys/vm/drop_caches && free
+         echo "Empty SWAP"
+         swapoff -a
+         sleep 10
+         swapon -a
+         sleep 10
          ;;
      20)
          clear
