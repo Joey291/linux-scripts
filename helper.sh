@@ -3,7 +3,7 @@ if [ ! -f "temp/installed" ]; then
  echo " "
  echo "Installing Dependencies..."
  echo " "
- apk update && apk add lm-sensors lm-sensors-detect bash htop git nano dmidecode util-linux hdparm btop
+ apk update && apk add lm-sensors lm-sensors-detect bash htop git nano dmidecode util-linux hdparm btop smartmontools
  mkdir temp
  touch temp/installed
 fi
