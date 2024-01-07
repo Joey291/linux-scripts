@@ -484,15 +484,21 @@ while true; do
          ;;
      87)
          clear
-         echo " "
-         echo "Copy and add the following lines to Disable IPV6"
-         echo "net.ipv6.conf.all.disable_ipv6=1"
-         echo "net.ipv6.conf.default.disable_ipv6=1"
-         echo "net.ipv6.conf.lo.disable_ipv6=1"
-         echo " "
-         echo "Dücke beliebige Taste um fortzufahren..."
-         read -n 1 -s
-         nano /etc/sysctl.conf
+         # Check if the lines exist in sysctl.conf
+         if grep -q '^net.ipv6.conf.all.disable_ipv6=1' /etc/sysctl.conf &&
+            grep -q '^net.ipv6.conf.default.disable_ipv6=1' /etc/sysctl.conf &&
+            grep -q '^net.ipv6.conf.lo.disable_ipv6=1' /etc/sysctl.conf; then
+            # Lines exist, already deactivated
+            echo "IPv6 is already deactivated"
+         else
+            # Lines don't exist, add them
+            echo "net.ipv6.conf.all.disable_ipv6=1" | sudo tee -a /etc/sysctl.conf
+            echo "net.ipv6.conf.default.disable_ipv6=1" | sudo tee -a /etc/sysctl.conf
+            echo "net.ipv6.conf.lo.disable_ipv6=1" | sudo tee -a /etc/sysctl.conf
+            echo "IPv6 has been deactivated"
+         fi
+         # Apply changes
+         sudo sysctl -p
          ;;
      86)
          clear
