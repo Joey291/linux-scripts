@@ -364,8 +364,6 @@ while true; do
               echo "1. Homeassistant"
               echo "2. Node-Red"
               echo "3. MQTT"
-              echo "4. "
-              echo "5. "
               echo "99. Zurück zum Hauptmenu"
               echo "Triff deine Wahl:"  && read option
                case $option in
@@ -387,16 +385,6 @@ while true; do
                 mkdir /var/lib/docker/volumes/mqtt/data
                 mkdir /var/lib/docker/volumes/mqtt/log
                 docker run -d -p 1883:1883 -p 9001:9001 --restart=unless-stopped -v /var/lib/docker/volumes/mqtt/data:/mosquitto/data -v /var/lib/docker/volumes/mqtt/log:/mosquitto/log -v /var/lib/docker/volumes/mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf --name MQTT eclipse-mosquitto
-                echo "Beliebige Taste um zum Menue zurück zu kehren"
-                read -n 1 -s
-                ;;
-               4)
-                docker run -d -p 1880:1880 --restart=unless-stopped -e TZ=Europe/Berlin -v /etc/localtime:/etc/localtime:ro -v node-red:/data --name nodered nodered/node-red
-                echo "Beliebige Taste um zum Menue zurück zu kehren"
-                read -n 1 -s
-                ;;
-               5)
-                docker run -d -p 1880:1880 --restart=unless-stopped -e TZ=Europe/Berlin -v /etc/localtime:/etc/localtime:ro -v node-red:/data --name nodered nodered/node-red
                 echo "Beliebige Taste um zum Menue zurück zu kehren"
                 read -n 1 -s
                 ;;
