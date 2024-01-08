@@ -53,6 +53,7 @@ while true; do
     echo "30. Y-Cruncher"
     echo " "
     echo "-Docker-"
+    echo "50. Docker Install Helper"
     echo "51. Docker Container Stats"
     echo "52. Docker Connect To Container Shell"
     echo "53. Docker Verzeichnis"
@@ -356,6 +357,61 @@ while true; do
           clear
           ./y-cruncher
          exit 0
+         ;;
+     50)
+           while true; do
+              clear
+              echo "1. Homeassistant"
+              echo "2. Node-Red"
+              echo "3. MQTT"
+              echo "4. "
+              echo "5. "
+              echo "99. Zurück zum Hauptmenu"
+              echo "Triff deine Wahl:"  && read option
+               case $option in
+               1)
+                docker volume create homeassistant
+                docker volume create homeassistant-media
+                docker run -d --name homeassistant --restart=unless-stopped --net host --privileged -v /etc/localtime:/etc/localtime:ro -v homeassistant:/config -v homeassistant-media:/media -v /var/run/docker.sock:/var/run/docker.sock homeassistant/home-assistant:stable
+                echo "Beliebige Taste um zum Menue zurück zu kehren"
+                read -n 1 -s
+                ;;
+               2)
+                docker volume create node-red
+                docker run -d -p 1880:1880 --restart=unless-stopped -e TZ=Europe/Berlin -v /etc/localtime:/etc/localtime:ro -v node-red:/data --name nodered nodered/node-red
+                echo "Beliebige Taste um zum Menue zurück zu kehren"
+                read -n 1 -s
+                ;;
+               3)
+                mkdir /var/lib/docker/volumes/mqtt
+                mkdir /var/lib/docker/volumes/mqtt/data
+                mkdir /var/lib/docker/volumes/mqtt/log
+                docker run -d -p 1883:1883 -p 9001:9001 --restart=unless-stopped -v /var/lib/docker/volumes/mqtt/data:/mosquitto/data -v /var/lib/docker/volumes/mqtt/log:/mosquitto/log -v /var/lib/docker/volumes/mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf --name MQTT eclipse-mosquitto
+                echo "Beliebige Taste um zum Menue zurück zu kehren"
+                read -n 1 -s
+                ;;
+               4)
+                docker run -d -p 1880:1880 --restart=unless-stopped -e TZ=Europe/Berlin -v /etc/localtime:/etc/localtime:ro -v node-red:/data --name nodered nodered/node-red
+                echo "Beliebige Taste um zum Menue zurück zu kehren"
+                read -n 1 -s
+                ;;
+               5)
+                docker run -d -p 1880:1880 --restart=unless-stopped -e TZ=Europe/Berlin -v /etc/localtime:/etc/localtime:ro -v node-red:/data --name nodered nodered/node-red
+                echo "Beliebige Taste um zum Menue zurück zu kehren"
+                read -n 1 -s
+                ;;
+               99)
+                break
+                ;;
+              *)
+                clear
+                echo "Ungültige Option ausgewählt."
+                echo " "
+                echo "Drücke beliebige Taste um fortzufahren..."
+                read -n 1 -s
+                ;;
+               esac
+         done
          ;;
      51)
          while true; do
