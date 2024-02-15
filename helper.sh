@@ -206,7 +206,7 @@ while true; do
          ;;
       14)
          echo "Führe 'iotop' aus..."
-         iotop
+         iotop -o
          ;;
      20)
          clear
