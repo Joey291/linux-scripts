@@ -3,7 +3,7 @@ if [ ! -f "temp/installed" ]; then
  echo " "
  echo "Installing Dependencies..."
  echo " "
- apk update && apk add lm-sensors lm-sensors-detect bash htop git nano dmidecode util-linux hdparm btop smartmontools
+ apk update && apk add lm-sensors lm-sensors-detect bash htop git nano dmidecode util-linux hdparm btop smartmontools iotop
  mkdir temp
  touch temp/installed
 fi
@@ -38,6 +38,7 @@ while true; do
     echo "11. Temperatur"
     echo "12. Maintenance"
     echo "13. SMART Tool"
+    echo "14. IOtop"
     echo " "
     echo "-Services-"
     echo "20. Samba Neustart"
@@ -99,12 +100,10 @@ while true; do
          ;;
       2)
          echo "Führe 'htop' aus..."
-         # Füge hier den Befehl für 'reboot' ein
          htop
          ;;
       3)
          echo "Führe 'htop' aus..."
-         # Füge hier den Befehl für 'reboot' ein
          btop
          ;;
       4)
@@ -204,6 +203,10 @@ while true; do
          clear
          smartctl -a -d ata /dev/$smart
          read -n 1 -s
+         ;;
+      14)
+         echo "Führe 'iotop' aus..."
+         iotop
          ;;
      20)
          clear
