@@ -39,6 +39,8 @@ while true; do
     echo "12. Maintenance"
     echo "13. SMART Tool"
     echo "14. IOtop"
+    echo "15. Edit Motd"
+    echo "16. Change Hostname"
     echo " "
     echo "-Services-"
     echo "20. Samba Neustart"
@@ -69,7 +71,6 @@ while true; do
     echo "86. Listening Ports"
     echo "87. sysctl.conf (Disable IPV6)"
     echo "88. sysctl.conf (SWAP Settings)"
-    echo "89. Edit Motd"
     echo " "
     echo "-System-"
     echo "90. Neustart"
@@ -208,6 +209,12 @@ while true; do
       14)
          echo "Führe 'iotop' aus..."
          iotop -o
+         ;;
+     15)
+         nano /etc/motd
+         ;;
+     16)
+         nano /etc/hostname
          ;;
      20)
          clear
@@ -569,9 +576,6 @@ while true; do
          echo " kehre zum hauptmenue zurück ... "
          sleep 3
          ;;
-     89)
-        nano /etc/motd
-        ;;
      90)
          clear
          echo "Möchten Sie Wirklich Neustarten? Server 1-2 Minuten unerreichbar (y/n)"
