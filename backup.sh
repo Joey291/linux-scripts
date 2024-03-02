@@ -56,6 +56,8 @@ echo "Checking containers..."
 
 # Loop through entries in the configuration file
 while IFS= read -r line; do
+    # Überspringen von Kommentarzeilen
+    [[ $line =~ ^\s*# ]] && continue
     container_name=$(echo "$line" | cut -d ':' -f 1)
     config_folder=$(echo "$line" | cut -d ':' -f 2)
     stop_backup_start "$container_name" "$config_folder"
