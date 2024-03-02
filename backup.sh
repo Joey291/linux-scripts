@@ -2,7 +2,7 @@
 
 CONFIG_FILE="backup.config"
 backup_location="/var/lib/docker/volumes/backup"
-MAX_DAYS=30  # Maximum number of days to keep archives
+MAX_DAYS=30  # Maximale Anzahl der Aufbewahrungstage
 COMPRESS_OPTION=""  # Setze auf "y" für gzip-Kompression, leer für keine Kompression. Backup dauert deutlich länger !
 
 is_container_running() {
@@ -25,9 +25,11 @@ stop_backup_start() {
 
     echo "Creating archive for $container_name..."
     if [ "$COMPRESS_OPTION" == "y" ]; then
-         tar -czf "$backup_file" $config_folder
+         # Mit Kompression
+         tar -czf "$backup_file" -C "$config_folder" .
     else
-         tar -cf "$backup_file" $config_folder
+         # Ohne Kompression
+         tar -cf "$backup_file" -C "$config_folder" .
     fi
 
     if [ "$stopped" = true ]; then
