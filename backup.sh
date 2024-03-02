@@ -23,20 +23,18 @@ stop_backup_start() {
         echo "Container $container_name is already stopped."
     fi
 
-echo "Creating archive for $container_name..."
-if [ "$COMPRESS_OPTION" == "y" ]; then
-    # Mit Kompression
-    (
-        cd /var/lib/docker/volumes || exit
-        tar -czf "$backup_file" $config_folder
-    )
-else
-    # Ohne Kompression
-    (
-        cd /var/lib/docker/volumes || exit
-        tar -cf "$backup_file" $config_folder
-    )
-fi
+    create_backup() {
+        if [ "$COMPRESS_OPTION" == "y" ]; then
+            # Mit Kompression
+            cd /var/lib/docker/volumes && tar -czf "$backup_file" "$config_folder"
+        else
+            # Ohne Kompression
+            cd /var/lib/docker/volumes && tar -cf "$backup_file" "$config_folder"
+        fi
+    }
+    
+    echo "Creating archive for $container_name..."
+    create_backup
 
     if [ "$stopped" = true ]; then
         echo "Starting container $container_name..." && docker start "$container_name"
