@@ -71,6 +71,7 @@ while true; do
     echo "86. Listening Ports"
     echo "87. sysctl.conf (Disable IPV6)"
     echo "88. sysctl.conf (SWAP Settings)"
+    echo "89. Crontab"
     echo " "
     echo "-System-"
     echo "90. Neustart"
@@ -576,6 +577,9 @@ while true; do
          echo " kehre zum hauptmenue zurück ... "
          sleep 3
          ;;
+     89)
+        EDITOR=nano crontab -e 
+        ;;
      90)
          clear
          echo "Möchten Sie Wirklich Neustarten? Server 1-2 Minuten unerreichbar (y/n)"
