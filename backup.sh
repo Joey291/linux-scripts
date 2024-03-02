@@ -26,10 +26,10 @@ stop_backup_start() {
     create_backup() {
         if [ "$COMPRESS_OPTION" == "y" ]; then
             # Mit Kompression
-            cd /var/lib/docker/volumes && tar -czf "$backup_file" "$config_folder"
+            cd /var/lib/docker/volumes && tar -czf "$backup_file" $(ls -d $config_folder)
         else
             # Ohne Kompression
-            cd /var/lib/docker/volumes && tar -cf "$backup_file" "$config_folder"
+            cd /var/lib/docker/volumes && tar -cf "$backup_file" $(ls -d $config_folder)
         fi
     }
     
