@@ -79,7 +79,17 @@ while true; do
     echo "99. Exit Programm"
     echo " "
     echo " "
+    # Funktion zur Vergleich der Kernel-Versionen
+    kernel_version_compare() {
+        installed_version=$(uname -r)
+        loaded_version=$(uname -a | cut -d' ' -f3)
+        if [[ "$installed_version" != "$loaded_version" ]]; then
+            echo "(System Neustart erforderlich)"
+        fi
+    }
 
+    # Aufruf der Vergleichsfunktion
+    kernel_version_compare
     echo "Triff deine Wahl:"  && read option
      case $option in
       1)
