@@ -60,8 +60,6 @@ while true; do
     echo "51. Docker Container Stats"
     echo "52. Docker Connect To Container Shell"
     echo "53. Docker Verzeichnis"
-    echo "54. Portainer Update"
-    echo "55. Portainer Update Cgroup"
     echo " "
     echo "-Sonstiges-"
     echo "81. Hardware Info (dmidecode)"
@@ -376,6 +374,8 @@ while true; do
               echo "1. Homeassistant"
               echo "2. Node-Red"
               echo "3. MQTT"
+              echo "4. Portainer Update"
+              echo "5. Portainer Update Cgroup"
               echo "99. Zurück zum Hauptmenu"
               echo "Triff deine Wahl:"  && read option
                case $option in
@@ -399,6 +399,22 @@ while true; do
                 docker run -d -p 1883:1883 -p 9001:9001 --restart=unless-stopped -v /var/lib/docker/volumes/mqtt/data:/mosquitto/data -v /var/lib/docker/volumes/mqtt/log:/mosquitto/log -v /var/lib/docker/volumes/mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf --name MQTT eclipse-mosquitto
                 echo "Beliebige Taste um zum Menue zurück zu kehren"
                 read -n 1 -s
+                ;;
+               4)
+                #Portainer Update
+                clear
+                docker pull portainer/portainer-ce
+                docker stop portainer
+                docker rm portainer
+                docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -v /etc/localtime:/etc/localtime:ro -v portainer_data:/data portainer/portainer-ce
+                ;;
+               5)
+                #Portainer Update
+                clear
+                docker pull portainer/portainer-ce
+                docker stop portainer
+                docker rm portainer
+                docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --cgroupns host --restart=unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -v /etc/localtime:/etc/localtime:ro -v portainer_data:/data portainer/portainer-ce
                 ;;
                99)
                 break
@@ -463,22 +479,6 @@ while true; do
          echo "Wechsel das Verzeichnis"
          echo "cd /var/lib/docker/volumes/"
          exit 0
-         ;;
-     54)
-         #Portainer Update
-         clear
-         docker pull portainer/portainer-ce
-         docker stop portainer
-         docker rm portainer
-         docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -v /etc/localtime:/etc/localtime:ro -v portainer_data:/data portainer/portainer-ce
-         ;;
-     55)
-         #Portainer Update
-         clear
-         docker pull portainer/portainer-ce
-         docker stop portainer
-         docker rm portainer
-         docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --cgroupns host --restart=unless-stopped -v /var/run/docker.sock:/var/run/docker.sock -v /etc/localtime:/etc/localtime:ro -v portainer_data:/data portainer/portainer-ce
          ;;
      81)
          clear
