@@ -81,10 +81,11 @@ while true; do
     echo " "
     # Funktion zur Vergleich der Kernel-Versionen
     kernel_version_compare() {
-        installed_version=$(uname -r)
+        installed_version=$(ls -1 /lib/modules | tail -n1)
         loaded_version=$(uname -a | cut -d' ' -f3)
         if [[ "$installed_version" != "$loaded_version" ]]; then
             echo "(System Neustart erforderlich)"
+            echo "(Neue Kernelversion installiert, aber nicht geladen)"
         fi
     }
 
