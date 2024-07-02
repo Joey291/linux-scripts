@@ -3,7 +3,7 @@ if [ ! -f "temp/installed" ]; then
  echo " "
  echo "Installing Dependencies..."
  echo " "
- apk update && apk add lm-sensors lm-sensors-detect bash htop git nano dmidecode util-linux hdparm btop smartmontools iotop
+ apk update && apk add lm-sensors lm-sensors-detect bash htop git nano dmidecode util-linux hdparm btop smartmontools iotop ctop
  mkdir temp
  touch temp/installed
 fi
@@ -60,6 +60,7 @@ while true; do
     echo "51. Docker Container Stats"
     echo "52. Docker Connect To Container Shell"
     echo "53. Docker Verzeichnis"
+    echo "54. ctop"
     echo " "
     echo "-Sonstiges-"
     echo "81. Hardware Info (dmidecode)"
@@ -490,6 +491,10 @@ while true; do
          echo "Wechsel das Verzeichnis"
          echo "cd /var/lib/docker/volumes/"
          exit 0
+         ;;
+      54)
+         echo "Führe 'ctop' aus..."
+         ctop
          ;;
      81)
          clear
