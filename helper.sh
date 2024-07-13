@@ -3,7 +3,7 @@ if [ ! -f "temp/installed" ]; then
  echo " "
  echo "Installing Dependencies..."
  echo " "
- apk update && apk add lm-sensors lm-sensors-detect bash htop git nano dmidecode util-linux hdparm btop smartmontools iotop ctop
+ apk update && apk add lm-sensors lm-sensors-detect bash htop git nano dmidecode util-linux hdparm btop smartmontools iotop ctop neofetch
  mkdir temp
  touch temp/installed
 fi
@@ -66,6 +66,7 @@ while true; do
     echo "81. Hardware Info (dmidecode)"
     echo "82. CPU Info"
     echo "83. CPU Aktueller Takt"
+    echo "84. Neofetch (Sys info)"
     echo "85. Network Interfaces"
     echo "86. Listening Ports"
     echo "87. sysctl.conf (Disable IPV6)"
@@ -533,6 +534,9 @@ while true; do
              sleep 3
          done
          ;;
+     84)
+       neofetch
+       ;;         
      85)
          clear
          /sbin/ifconfig -a
