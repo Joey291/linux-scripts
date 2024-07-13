@@ -536,7 +536,11 @@ while true; do
          ;;
      84)
        neofetch
-       ;;         
+         echo " "
+         echo " "
+         echo " "
+         echo "Drücke beliebige Taste um fortzufahren..."
+         read -n 1 -s     
      85)
          clear
          /sbin/ifconfig -a
