@@ -355,7 +355,7 @@ while true; do
          ;;
      30) #y-cruncher
          clear
-         ycruncher=v0.8.3.9532-static
+         ycruncher=v0.8.5.9543-static
          mkdir temp
          cd temp
          if [ ! -d "y-cruncher" ]; then
