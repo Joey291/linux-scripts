@@ -41,6 +41,7 @@ while true; do
     echo "14. IOtop"
     echo "15. Edit Motd"
     echo "16. Change Hostname"
+    echo "17. Maintenance Trim SSD"
     echo " "
     echo "-Services-"
     echo "20. Samba Neustart"
@@ -189,8 +190,6 @@ while true; do
          ;;
      12) #maintenance
          clear
-         echo "TRIM SSD"
-         fstrim / -v
          echo "Empty ram buffers and cache"
          echo " "
          echo " "
@@ -227,6 +226,14 @@ while true; do
          ;;
      16)
          nano /etc/hostname
+         ;;
+     17) #maintenance Trim SSD
+         clear
+         echo "TRIM SSD"
+         fstrim / -v
+         echo " "
+         echo "Ok"
+         sleep 4
          ;;
      20)
          clear
